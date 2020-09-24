@@ -2,6 +2,8 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 from flask_bootstrap import Bootstrap
+from flask_uploads import UploadSet,configure_uploads,IMAGES
+
 
 bootstrap = Bootstrap()
 db = SQLAlchemy()
@@ -10,16 +12,21 @@ login_manager.session_protection = 'strong'
 login_manager.login_view = 'auth.login'
 import os
 
+photos = UploadSet('photos',IMAGES)
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql+psycopg2://postgres:g11111111@localhost/minutepitch'
 SECRET_KEY = os.urandom(32)
 app.config['SECRET_KEY'] = SECRET_KEY
+app.config['UPLOADED_PHOTOS_DEST'] ='app/static/photos'
 
 # Initializing flask extensions
 bootstrap.init_app(app)
 db.init_app(app)
 login_manager.init_app(app)
+
+# configure UploadSet
+configure_uploads(app,photos)
 
 from app import views
 from .auth import auth as auth_blueprint
