@@ -3,6 +3,9 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 from flask_bootstrap import Bootstrap
 from flask_uploads import UploadSet,configure_uploads,IMAGES
+from flask_mail import Mail
+from .config import DevConfig
+from os import environ
 
 
 bootstrap = Bootstrap()
@@ -10,20 +13,21 @@ db = SQLAlchemy()
 login_manager = LoginManager()
 login_manager.session_protection = 'strong'
 login_manager.login_view = 'auth.login'
-import os
+mail = Mail()
+
 
 photos = UploadSet('photos',IMAGES)
 
-app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql+psycopg2://postgres:g11111111@localhost/minutepitch'
-SECRET_KEY = os.urandom(32)
-app.config['SECRET_KEY'] = SECRET_KEY
-app.config['UPLOADED_PHOTOS_DEST'] ='app/static/photos'
+app = Flask(__name__, instance_relative_config = True)
+
+# Setting up configuration
+app.config.from_object(DevConfig)
 
 # Initializing flask extensions
 bootstrap.init_app(app)
 db.init_app(app)
 login_manager.init_app(app)
+mail.init_app(app)
 
 # configure UploadSet
 configure_uploads(app,photos)

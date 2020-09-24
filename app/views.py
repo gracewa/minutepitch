@@ -11,6 +11,8 @@ Pitch = Pitch
 
 @app.route('/', methods = ['GET','POST'])
 def index():
+    posts = Post.query.filter_by(username=uname).first()
+
     if request.method=='GET':
         return render_template('index.html')
 
