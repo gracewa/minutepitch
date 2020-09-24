@@ -2,8 +2,8 @@ from flask import render_template
 from . import auth
 from flask import render_template,redirect,url_for, flash,request
 from flask_login import login_user,logout_user,login_required
-from ..models import User
-from .forms import LoginForm,RegistrationForm
+from ..models import User, Pitch
+from .forms import LoginForm,RegistrationForm, PitchForm
 from .. import db
 from ..email import mail_message
 
@@ -43,3 +43,16 @@ def logout():
     logout_user()
     return redirect(url_for("index"))
 
+@auth.route('/pitch', methods = ['GET','POST'])
+@login_required
+def new_pitch():
+    form = PitchForm()
+
+    if form.validate_on_submit():
+            title = form.title.data
+            new_pitch = form.pitch.data
+            pitch = Pitch(pitch_title=title,pitch=new_pitch)
+            pitch.save_pitch()
+            return redirect(url_for('index'))
+
+    return render_template('auth/submitpitch.html', pitch_form=form)

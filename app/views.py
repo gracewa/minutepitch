@@ -1,9 +1,9 @@
 from flask import render_template,request,redirect,url_for,abort
 from app import app
 from .models import Pitch, User
-from .forms import PitchForm, UpdateProfile
+from .forms import UpdateProfile
 from flask_login import login_required
-from . import db,photos
+from . import db, photos
 
 Pitch = Pitch
 
@@ -11,30 +11,11 @@ Pitch = Pitch
 
 @app.route('/', methods = ['GET','POST'])
 def index():
-    posts = Post.query.filter_by(username=uname).first()
-
-    if request.method=='GET':
-        return render_template('index.html')
-
-    elif request.method=='POST':
-        username = request.form.get('username')
-        password = request.form.get('password')
+    pitches = Pitch.query.all()
+    print(pitches)
+    return render_template('index.html', pitches=pitches)
 
 
-
-@app.route('/pitch/new/<int:id>', methods = ['GET','POST'])
-@login_required
-def new_pitch(id):
-    form = PitchForm()
-
-    if form.validate_on_submit():
-            title = form.title.data
-            pitch = form.pitch.data
-            pitch = Pitch(id,title,pitch)
-            pitch.save_pitch()
-            return redirect(url_for('pitch',id = pitch.id ))
-
-    return render_template('pitch.html', pitch_form=form)
 
 @app.route('/user/<uname>', methods = ['GET','POST'])
 def profile(uname):
