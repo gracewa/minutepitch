@@ -26,6 +26,7 @@ def register():
 @auth.route('/login',methods=['GET','POST'])
 def login():
     login_form = LoginForm()
+    title = 'Register'
     if login_form.validate_on_submit():
         user = User.query.filter_by(email = login_form.email.data).first()
         if user is not None and user.verify_password(login_form.password.data):
@@ -47,7 +48,7 @@ def logout():
 @login_required
 def new_pitch():
     form = PitchForm()
-
+    title = 'Register'
     if form.validate_on_submit():
             title = form.title.data
             new_pitch = form.pitch.data
@@ -55,4 +56,4 @@ def new_pitch():
             pitch.save_pitch()
             return redirect(url_for('index'))
 
-    return render_template('auth/submitpitch.html', pitch_form=form)
+    return render_template('auth/submitpitch.html', pitch_form=form, title=title)
