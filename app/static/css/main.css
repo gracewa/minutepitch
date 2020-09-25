@@ -6,3 +6,7 @@ background-blend-mode: overlay;
 background-color:rgb(231, 227, 227);
 }
 
+form {
+    padding: 10px;
+    background-color:rgb(231, 227, 227);
+}

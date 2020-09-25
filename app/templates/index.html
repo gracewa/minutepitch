@@ -6,14 +6,23 @@
 {% endblock %}
 
 {% block content %}
-<div class="col-md-8">
-<div class="pitches">
+<div class="row">
+<div class="col-md-8 col-md-offset-2">
+
     {% for pitch in pitches %}
-    <p>{{pitch.pitch_title}}</p>
-    <p>{{pitch.pitch}}</p>
-    <p>Posted {{pitch.posted}}</p>
-    <button type="button" class="btn btn-secondary">Like</button>
-    <button type="button" class="btn btn-secondary">Dislike</button>
+        <div class="jumbotron jumbotron-fluid text-center">
+        <h3>{{pitch.pitch_title}}</h3>
+        <h5>{{pitch.pitch}}</h5>
+        <h6>{{pitch.posted}}</h6>
+        <div class="btn-group-toggle" data-toggle="buttons">
+            <label class="btn btn-success active">
+                <input type="radio" name="options" id="like" autocomplete="off"> Like
+            </label>
+            <label class="btn btn-danger active">
+                <input type="radio" name="options" id="dislike" autocomplete="off"> Dislike
+            </label>
+        </div>
+    </div>
     {% endfor %}
 </div>
 </div>
