@@ -4,7 +4,7 @@ from flask_login import LoginManager
 from flask_bootstrap import Bootstrap
 from flask_uploads import UploadSet,configure_uploads,IMAGES
 from flask_mail import Mail
-from .config import DevConfig
+from .config import DevConfig, ProdConfig
 from os import environ
 from flask_fontawesome import FontAwesome
 
@@ -23,7 +23,7 @@ photos = UploadSet('photos',IMAGES)
 app = Flask(__name__, instance_relative_config = True)
 
 # Setting up configuration
-app.config.from_object(DevConfig)
+app.config.from_object(ProdConfig)
 
 # Initializing flask extensions
 bootstrap.init_app(app)
@@ -40,4 +40,4 @@ from .auth import auth as auth_blueprint
 app.register_blueprint(auth_blueprint,url_prefix = '/authenticate')
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run()

@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/../NewsApi/.idea/NewsApi.iml" filepath="$PROJECT_DIR$/../NewsApi/.idea/NewsApi.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/minutepitch.iml" filepath="$PROJECT_DIR$/.idea/minutepitch.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../watchlist2/.idea/watchlist2.iml" filepath="$PROJECT_DIR$/../watchlist2/.idea/watchlist2.iml" />
     </modules>
   </component>
 </project>
