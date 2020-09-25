@@ -23,7 +23,7 @@ photos = UploadSet('photos',IMAGES)
 app = Flask(__name__, instance_relative_config = True)
 
 # Setting up configuration
-app.config.from_object(ProdConfig)
+app.config.from_object(DevConfig)
 
 # Initializing flask extensions
 bootstrap.init_app(app)
