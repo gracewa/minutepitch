@@ -6,7 +6,7 @@ class Config:
     '''
 
     SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://postgres:g11111111@localhost/minutepitch'
-    SECRET_KEY = os.urandom(32)
+    SECRET_KEY = "anystring"
     UPLOADED_PHOTOS_DEST ='app/static/photos'
     #  email configurations
     # Email Settings
