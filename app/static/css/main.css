@@ -1,0 +1,8 @@
+body {
+font-family:sans-serif;
+background:url("egypt.jpg");
+background-size: cover;
+background-blend-mode: overlay;
+background-color:rgb(231, 227, 227);
+}
+

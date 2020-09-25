@@ -1,21 +1,20 @@
-<div class="navbar navbar-inverse" role="navigation">
+
+<div class="navigation">
+<div class="navbar navbar-default" role="navigation">
 
     <ul class="nav navbar-nav">
         <li><a href="/">Home</a></li>
-        {% if current_user.is_authenticated %}
-        <li><a href="{{url_for('profile',uname=current_user.username)}}">My Profile</a></li>
-        {% else %}
-        <li><a href="{{url_for('auth.login')}}">My Profile</a></li>
-        {%endif%}
         <li><a href="{{url_for('auth.new_pitch')}}">Submit Pitch</a></li>
     </ul>
 
-    <ul class="nav navbar-nav navbar-left">
+    <ul class="nav navbar-nav navbar-right">
         {% if current_user.is_authenticated %}
-
+        <li><a href="{{url_for('profile',uname=current_user.username)}}">Profile</a></li>
         <li><a href="{{url_for('auth.logout')}}">Sign out</a></li>
         {% else %}
+        <li><a href="{{url_for('auth.login')}}">Profile</a></li>
         <li><a href="{{url_for('auth.login')}}">Sign in</a></li>
         {%endif%}
     </ul>
+</div>
 </div>
