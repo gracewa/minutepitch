@@ -6,25 +6,44 @@
 {% endblock %}
 
 {% block content %}
+<div class="container">
 <div class="row">
-<div class="col-md-8 col-md-offset-2">
-
-    {% for pitch in pitches %}
-        <div class="jumbotron jumbotron-fluid text-center">
-        <h3>{{pitch.pitch_title}}</h3>
-        <h5>{{pitch.pitch}}</h5>
-        <h6>{{pitch.posted}}</h6>
-        <h6>Category: {{pitch.category}}</h6>
-        <div class="btn-group-toggle" data-toggle="buttons">
-            <label class="btn btn-success active">
-                <input type="radio" name="options" id="like" autocomplete="off"> Like
-            </label>
-            <label class="btn btn-danger active">
-                <input type="radio" name="options" id="dislike" autocomplete="off"> Dislike
-            </label>
+    <div class="col-md-4 col-md-offset-4">
+        <div class="card text-center">
+            <div class="card-body">
+                <h3 class="card-title">
+                    Categories
+                </h3>
+                {% for pitch in pitches %}
+                    <a href="/category/{{pitch.category}}" class="badge badge-pill badge-primary">#{{pitch.category}}</a>
+                {% endfor %}
+            </div>
         </div>
     </div>
-    {% endfor %}
 </div>
 </div>
+<br>
+
+{% for pitch in pitches %}
+<div class="row">
+    <div class="col-md-8 col-md-offset-2">
+        <div class="jumbotron jumbotron-fluid text-center">
+            <h3>{{pitch.pitch_title}}</h3>
+            <h5>{{pitch.pitch}}</h5>
+            <h6>{{pitch.posted}}</h6>
+            <h6>Category: {{pitch.category}}</h6>
+            <div class="btn-group-toggle" data-toggle="buttons">
+            <button type="button" class="btn btn-success btn-lg">
+              <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> Like
+            </button>
+            <button type="button" class="btn btn-danger btn-lg">
+              <span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span> Dislike
+            </button>
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endfor %}
+
 {% endblock %}

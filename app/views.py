@@ -16,6 +16,7 @@ def index():
 
 
 
+
 @app.route('/user/<uname>', methods = ['GET','POST'])
 def profile(uname):
     user = User.query.filter_by(username = uname).first()
