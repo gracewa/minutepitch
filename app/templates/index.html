@@ -11,9 +11,11 @@
     <div class="col-md-4 col-md-offset-4">
         <div class="card text-center">
             <div class="card-body">
+                {%if pitches%}
                 <h3 class="card-title">
-                    Categories
+                    {{title}}
                 </h3>
+                {% endif %}
                 {% for pitch in pitches %}
                     <a href="/category/{{pitch.category}}" class="badge badge-pill badge-primary">#{{pitch.category}}</a>
                 {% endfor %}

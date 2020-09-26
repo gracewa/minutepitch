@@ -11,8 +11,9 @@ Pitch = Pitch
 
 @app.route('/', methods = ['GET','POST'])
 def index():
+    title = 'Categories'
     pitches = Pitch.query.all()
-    return render_template('index.html', pitches=pitches)
+    return render_template('index.html', pitches=pitches, title=title)
 
 
 
