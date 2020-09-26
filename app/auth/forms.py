@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField,PasswordField,BooleanField,SubmitField,TextAreaField
+from wtforms import StringField,PasswordField,BooleanField,SubmitField,TextAreaField, SelectField
 from wtforms.validators import Required,Email,EqualTo
 from wtforms import ValidationError
 from ..models import User
@@ -31,5 +31,13 @@ class PitchForm(FlaskForm):
 
     title = StringField('Pitch title',validators=[Required()])
     pitch = TextAreaField('Pitch', validators=[Required()])
+    category = SelectField(u'Category',
+                choices=[('Other', 'Other'),
+                         ('Business', 'Business'),
+                         ('Politics', 'Politics'),
+                         ('Entertainment', 'Entertainment'),
+                         ('Technology', 'Technology')
+                         ],
+                validators=[Required()])
     submit = SubmitField('Submit')
 

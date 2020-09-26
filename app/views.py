@@ -12,7 +12,6 @@ Pitch = Pitch
 @app.route('/', methods = ['GET','POST'])
 def index():
     pitches = Pitch.query.all()
-    print(pitches)
     return render_template('index.html', pitches=pitches)
 
 
@@ -63,3 +62,9 @@ def update_pic(uname):
         user.profile_pic_path = path
         db.session.commit()
     return redirect(url_for('profile',uname=uname))
+
+@app.route('/category/<category>',methods= ['GET', 'Post'])
+def pitches_by_category(category):
+    category_pitches = Pitch.query.filter_by(category=category)
+
+    return render_template('category.html', pitches=category_pitches)

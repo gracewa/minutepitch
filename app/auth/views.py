@@ -48,11 +48,13 @@ def logout():
 @login_required
 def new_pitch():
     form = PitchForm()
-    title = 'Register'
+    title = 'Pitch'
+
     if form.validate_on_submit():
             title = form.title.data
             new_pitch = form.pitch.data
-            pitch = Pitch(pitch_title=title,pitch=new_pitch)
+            category = form.category.data
+            pitch = Pitch(pitch_title=title,pitch=new_pitch, category=category)
             pitch.save_pitch()
             return redirect(url_for('index'))
 
